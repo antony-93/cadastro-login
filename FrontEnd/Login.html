@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/css/styleLogin.css">
+    <title>Login</title>
+    <script src="js/jquery/jquery-3.6.3.js"></script>
+</head>
+
+<body>
+    <section class="area-Login">
+        <div class="Login">
+            <div>
+                <img src="assets/image/v2/TexugoLogin.png">
+            </div>
+
+            <form method="POST" id="form-login">
+                <input type="text" name="nome" id="input-email" placeholder="Email" autofocus>
+                <input type="password" id="input-senha" name="senha" placeholder="Senha">
+                <div class="extra">
+                    <input type="checkbox">
+                    <label for="lembrar-me">Lembre de Mim</label>
+                    <a href="EsqueceuSenha.html">Esqueceu sua Senha</a>
+                </div>
+                <input type="submit" id='btn-login' value="Iniciar Sessão">
+            </form>
+            <div class="semConta">
+                <p>Ainda não tem uma conta?<a href="Cadastro.Html">Criar conta</a></p>
+            </div>
+        </div>
+    </section>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

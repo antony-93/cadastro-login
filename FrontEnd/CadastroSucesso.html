@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/css/styleCadastroSucesso.css">
+    <title>Cadastrado com Sucesso</title>
+    <script src="js/jquery/jquery-3.6.3.js"></script>
+</head>
+
+<body>
+    <section class="area-Login">
+        <div class="Login">
+            <div class="agradecimento">
+                <h1>Cadastrado com Sucesso!!</h1>
+            </div>
+            <div>
+                <img src="assets/image/v2/Texugo_party3.png">
+            </div>
+
+            <div class="continue-button">
+                <button id="button-login"><a href="Login.html">Fazer Login</a></button>
+            </div>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function(){
+            $('#button-login').click(function(){
+                window.location.href = "Login.html"
+            })
+        });
+    </script>
+</body>
+
+</html>
