@@ -26,7 +26,6 @@ public class UsuarioController {
       this.repository = usuarioRepository;
   }
 
-  // metodos crud aqui
   //pega todos os usuarios do banco e retorna uma lista
   @GetMapping
 public List<Usuario> findAll(){
@@ -58,6 +57,7 @@ public Usuario create(@RequestBody Usuario usuario){
             record.setTelefone(usuario.getTelefone());
             record.setGenero(usuario.getGenero());
             record.setSenha(usuario.getSenha());
+            record.setVerificado(usuario.getVerificado());
             Usuario updated = repository.save(record);
             return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
