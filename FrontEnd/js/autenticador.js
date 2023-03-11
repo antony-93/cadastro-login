@@ -20,6 +20,10 @@ $(document).ready(function () {
   // Gerar um código de verificação aleatório de 5 dígitos
   var codigo = Math.floor(Math.random() * 100000).toString().substring(0, 5);
 
+  // Recupera o valor da variável email armazenado em localStorage
+  var email = localStorage.getItem('email');
+
+
   $.ajax({
     url: "https://api.sendgrid.com/v3/mail/send",
     type: "POST",
@@ -32,7 +36,7 @@ $(document).ready(function () {
         {
           "to": [
             {
-              "email": "destinatario@exemplo.com"
+              "email": email
             }
           ],
           "subject": "Código de verificação - Texugo Access"

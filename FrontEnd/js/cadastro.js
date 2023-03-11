@@ -60,6 +60,10 @@ $(document).ready(function () {
                     alert("Erro ao cadastrar usuário. Por favor, tente novamente.");
                 }
             });
+
+            // Armazena o valor da variável email em localStorage
+            localStorage.setItem('email', email);
+
         }
     });
 });
