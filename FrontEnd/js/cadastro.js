@@ -52,7 +52,7 @@ $(document).ready(function () {
                 contentType: "application/json",
                 success: function (response) {
                     alert("Usuário cadastrado com sucesso!");
-                    window.location.href = "CadastroSucesso.html";
+                    window.location.href = "Autenticacao.html";
                 },
                 error: function (error) {
                     console.log(usuario)

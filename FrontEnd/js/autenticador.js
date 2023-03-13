@@ -1,29 +1,11 @@
 $(document).ready(function () {
-  // Adiciona evento input aos campos de entrada
-  $('.codigo input').on('input', function (e) {
-    // Remove todos os caracteres que não são números
-    $(this).val($(this).val().replace(/[^\d]/, ''));
-
-    // Move o foco para o próximo campo de entrada quando um único caractere é digitado
-    if ($(this).val().length == 1) {
-      $(this).next().focus();
-    }
-  });
-
-  // Adiciona evento keydown para detectar a tecla "backspace"
-  $('.codigo input').on('keydown', function (e) {
-    if (e.keyCode == 8 && $(this).val().length == 0) {
-      $(this).prev().focus();
-    }
-  });
-
   // Gerar um código de verificação aleatório de 5 dígitos
-  var codigo = Math.floor(Math.random() * 100000).toString().substring(0, 5);
+  var codigoAutenticacao = Math.floor(Math.random() * 100000).toString().substring(0, 5);
 
   // Recupera o valor da variável email armazenado em localStorage
   var email = localStorage.getItem('email');
 
-
+  // Adiciona o código de autenticação ao corpo do e-mail e o envia para o usuário
   $.ajax({
     url: "https://api.sendgrid.com/v3/mail/send",
     type: "POST",
@@ -48,7 +30,7 @@ $(document).ready(function () {
       "content": [
         {
           "type": "text/plain",
-          "value": "Seu código de verificação é: " + codigo
+          "value": "Seu código de verificação é: " + codigoAutenticacao
         }
       ]
     }),
@@ -60,5 +42,36 @@ $(document).ready(function () {
     }
   });
 
-});
+  // Adiciona evento ao botão de enviar
+  $('#btn-enviar').on('click', function () {
+    // Seleciona todos os inputs dentro da div com a classe "codigo"
+    var inputs = $('.codigo input');
+    var codigo = '';
 
+    // Itera por cada input e concatena seu valor atual à variável 'codigo'
+    inputs.each(function () {
+      codigo += $(this).val();
+    });
+
+    // Verifica se o código digitado pelo usuário é igual ao código de autenticação
+    if (codigo === codigoAutenticacao) {
+      // Realiza a chamada AJAX para alterar a variável verificado para true
+      $.ajax({
+        url: "http://localhost:8080/usuarios/email/" + email,
+        type: "PUT",
+        data: {
+          "verificado": true
+        },
+        success: function (data) {
+          window.location.href = "CadastroSucesso.html"
+          console.log("Variável verificado alterada com sucesso!");
+        },
+        error: function (xhr, status, error) {
+          console.error("Erro ao alterar a variável verificado: " + error);
+        }
+      });
+    } else {
+      console.log("Código incorreto!");
+    }
+  });
+});
